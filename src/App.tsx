@@ -1,26 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Layout from "./layout";
+import { MuiThemeProvider } from "@material-ui/core/styles";
+import { Router, Route, Switch } from "react-router";
+import { syncHistoryWithStore } from "mobx-react-router";
+import { RouterStore } from "./store";
+import { createHashHistory } from "history";
+import { Provider } from "mobx-react";
+import theme from "./theme";
 
-const App: React.FC = () => {
+const hashHistory = createHashHistory();
+const routerStore = new RouterStore();
+const history = syncHistoryWithStore(hashHistory, routerStore);
+const rootStore = {
+  router: routerStore,
+};
+
+const app: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider {...rootStore}>
+      <MuiThemeProvider theme={theme}>
+        <Router history={history}>
+          <Switch>
+            <Route
+              path={"/"}
+              component={Layout}
+            />
+          </Switch>
+        </Router>
+      </MuiThemeProvider>
+    </Provider>
   );
-}
+};
 
-export default App;
+export default app;
