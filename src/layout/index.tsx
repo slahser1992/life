@@ -1,9 +1,10 @@
 import React from 'react';
+import { Switch, Route } from "react-router-dom";
 import {withStyles, createStyles, WithStyles, Theme} from '@material-ui/core/styles';
-import { inject, observer } from "mobx-react";
 import { Global } from "../interface";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Hidden from '@material-ui/core/Hidden';
+import A from "../pages/a";
 import Navigator from './Navigator';
 import Header from './Header';
 
@@ -40,19 +41,17 @@ interface ContainerState {
 	mobileOpen: boolean;
 }
 
-@inject("router")
 class Container extends React.Component<ContainerProps, ContainerState> {
 	public state = {
 		mobileOpen: false,
 	};
 
-	handleDrawerToggle = (): void => {
+	private handleDrawerToggle = (): void => {
 		this.setState(state => ({ mobileOpen: !state.mobileOpen }));
 	};
 
 	public render(): JSX.Element {
-		const { classes } = this.props;
-		console.log(this.props);
+		const { classes, location: { pathname }} = this.props;
 		return (
 			<div className={classes.root}>
 				<CssBaseline />
@@ -63,18 +62,23 @@ class Container extends React.Component<ContainerProps, ContainerState> {
 							variant="temporary"
 							open={this.state.mobileOpen}
 							onClose={this.handleDrawerToggle}
+							exact={pathname}
 						/>
 					</Hidden>
 					<Hidden xsDown implementation="css">
-						<Navigator PaperProps={{ style: { width: drawerWidth } }} />
+						<Navigator
+							PaperProps={{ style: { width: drawerWidth }}}
+							exact={pathname}
+						/>
 					</Hidden>
 				</nav>
 				<div className={classes.appContent}>
 					<Header onDrawerToggle={this.handleDrawerToggle} />
 					<main className={classes.mainContent}>
-						<div>
-							Hello World
-						</div>
+						<Switch>
+							<Route component={A} path={"/"} exact={true}/>
+							<Route component={() => <div>{this.props.location.pathname}</div>} path={"/*"}/>
+						</Switch>
 					</main>
 				</div>
 			</div>

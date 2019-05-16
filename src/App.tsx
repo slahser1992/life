@@ -12,7 +12,7 @@ const hashHistory = createHashHistory();
 const routerStore = new RouterStore();
 const history = syncHistoryWithStore(hashHistory, routerStore);
 const rootStore = {
-  router: routerStore,
+
 };
 
 const app: React.FC = () => {

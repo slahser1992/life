@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import {Link} from "react-router-dom";
 import {WithStyles, withStyles, Theme} from "@material-ui/core/styles";
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
@@ -9,6 +10,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
 import categories from "../config/router";
+import { Global } from "../interface";
 
 const styles = (theme: Theme) => ({
 	categoryHeader: {
@@ -53,15 +55,17 @@ const styles = (theme: Theme) => ({
 	divider: {
 		marginTop: theme.spacing.unit * 2,
 	},
+	link: {
+		textDecoration: "none",
+	},
 });
 
 interface NavigatorProps extends WithStyles<typeof styles>{
-	[propsName: string]: string | number | boolean | object;
+	[propsName: string]: any;
 }
 
 function Navigator(props: NavigatorProps) {
 	const { classes, ...other } = props;
-
 	return (
 		<Drawer variant="permanent" {...other}>
 			<List disablePadding>
@@ -91,27 +95,28 @@ function Navigator(props: NavigatorProps) {
 								{id}
 							</ListItemText>
 						</ListItem>
-						{children.map(({ id: childId, icon, active }) => (
-							<ListItem
-								button
-								dense
-								key={childId}
-								className={classNames(
-									classes.item,
-									classes.itemActionable,
-									active && classes.itemActiveItem
-								)}
-							>
-								<ListItemIcon>{icon}</ListItemIcon>
-								<ListItemText
-									classes={{
-										primary: classes.itemPrimary,
-										textDense: classes.textDense,
-									}}
+						{children.map(({ id: childId, icon }) => (
+							<Link to={childId} className={classes.link} key={childId}>
+								<ListItem
+									button
+									dense
+									className={classNames(
+										classes.item,
+										classes.itemActionable,
+										(childId === props.exact.slice(1)) && classes.itemActiveItem
+									)}
 								>
-									{childId}
-								</ListItemText>
-							</ListItem>
+									<ListItemIcon>{icon}</ListItemIcon>
+									<ListItemText
+										classes={{
+											primary: classes.itemPrimary,
+											textDense: classes.textDense,
+										}}
+									>
+											{childId}
+									</ListItemText>
+								</ListItem>
+							</Link>
 						))}
 						<Divider className={classes.divider} />
 					</React.Fragment>

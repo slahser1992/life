@@ -16,7 +16,6 @@ export default ([
 			{
 				id: 'Authentication',
 				icon: <PeopleIcon />,
-				active: true,
 			},
 			{
 				id: 'Database',
