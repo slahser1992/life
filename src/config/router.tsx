@@ -10,52 +10,52 @@ import TimerIcon from "@material-ui/icons/Timer";
 import PhonelinkSetupIcon from "@material-ui/icons/PhonelinkSetup";
 
 export default ([
-	{
-		id: 'Develop',
-		children: [
-			{
-				id: 'Authentication',
-				icon: <PeopleIcon />,
-			},
-			{
-				id: 'Database',
-				icon: <DnsRoundedIcon />,
-			},
-			{
-				id: 'Storage',
-				icon: <PermMediaOutlinedIcon />,
-			},
-			{
-				id: 'Hosting',
-				icon: <PublicIcon />,
-			},
-			{
-				id: 'Functions',
-				icon: <SettingsEthernetIcon />,
-			},
-			{
-				id: 'ML Kit',
-				icon: <SettingsInputComponentIcon />,
-			},
-		],
-	},
-	{
-		id: 'Quality',
-		children: [
-			{
-				id: 'Analytics',
-				icon: <SettingsIcon />,
-			},
-			{
-				id: 'Performance',
-				icon: <TimerIcon />,
-			},
-			{
-				id: 'Test Lab',
-				icon: <PhonelinkSetupIcon />,
-			},
-		],
-	},
+  {
+    id: 'Develop',
+    children: [
+      {
+        id: 'Authentication',
+        icon: <PeopleIcon/>,
+      },
+      {
+        id: 'Database',
+        icon: <DnsRoundedIcon/>,
+      },
+      {
+        id: 'Storage',
+        icon: <PermMediaOutlinedIcon/>,
+      },
+      {
+        id: 'Hosting',
+        icon: <PublicIcon/>,
+      },
+      {
+        id: 'Functions',
+        icon: <SettingsEthernetIcon/>,
+      },
+      {
+        id: 'ML Kit',
+        icon: <SettingsInputComponentIcon/>,
+      },
+    ],
+  },
+  {
+    id: 'Quality',
+    children: [
+      {
+        id: 'Analytics',
+        icon: <SettingsIcon/>,
+      },
+      {
+        id: 'Performance',
+        icon: <TimerIcon/>,
+      },
+      {
+        id: 'Test Lab',
+        icon: <PhonelinkSetupIcon/>,
+      },
+    ],
+  },
 ]);
 
 

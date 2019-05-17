@@ -1,19 +1,17 @@
 import React from 'react';
 import Layout from "./layout";
-import { MuiThemeProvider } from "@material-ui/core/styles";
-import { Router, Route, Switch } from "react-router";
-import { syncHistoryWithStore } from "mobx-react-router";
-import { RouterStore } from "./store";
-import { createHashHistory } from "history";
-import { Provider } from "mobx-react";
+import {MuiThemeProvider} from "@material-ui/core/styles";
+import {Router, Route, Switch} from "react-router";
+import {syncHistoryWithStore} from "mobx-react-router";
+import {RouterStore} from "./store";
+import {createHashHistory} from "history";
+import {Provider} from "mobx-react";
 import theme from "./theme";
 
 const hashHistory = createHashHistory();
 const routerStore = new RouterStore();
 const history = syncHistoryWithStore(hashHistory, routerStore);
-const rootStore = {
-
-};
+const rootStore = {};
 
 const app: React.FC = () => {
   return (
